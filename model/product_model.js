@@ -1,6 +1,7 @@
 //репозиторий пришел сюда в модель и взял данные
-const { Schema, model } = require('mongoose')
+const { Schema, model, SchemaTypes } = require('mongoose')
 const {productType} = require('../config/constants')
+const mongoosePaginate = require('mongoose-paginate-v2')
 
 const productSchema = new Schema({
     type: {
@@ -28,6 +29,10 @@ const productSchema = new Schema({
     videoCard: {
         type: String
     },
+    owner:{
+        type: SchemaTypes.ObjectId,
+        ref: 'user',
+    }
 },
 {
     versionKey: false, 
@@ -41,6 +46,8 @@ const productSchema = new Schema({
     toObject: {virtuals: true}
     }
 )
+
+productSchema.plugin(mongoosePaginate)
 
 const Product = model('product', productSchema)
 
