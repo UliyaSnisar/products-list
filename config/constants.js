@@ -3,12 +3,6 @@ const ValidLengthOfUserName = {
     MAX_LENGTH_OF_NAME: 30,
   };
 
-const productType = {
-    PHONE: 'phone',
-    TABLET: 'tablet',
-    NOTEBOOK: 'notebook'
-}
-
 const HttpCode = {
     OK: 200,
     CREATED: 201,
@@ -25,7 +19,6 @@ const HttpCode = {
 
 
 module.exports = {
-    productType,
     HttpCode,
     ValidLengthOfUserName
 }

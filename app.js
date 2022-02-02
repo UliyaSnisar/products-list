@@ -3,8 +3,8 @@ const logger = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 
-const usersRouter = require('./routes/users/users')
-const productsRouter = require('./routes/products/products')
+const usersRouter = require('./routes/v1/users/users')
+const productsRouter = require('./routes/v1/products/products')
 
 const app = express()
 
@@ -15,8 +15,8 @@ app.use(logger(formatsLogger))
 app.use(cors())
 app.use(express.json({limit: 10000}))
 
-app.use('/api/users', usersRouter)
-app.use('/api/products', productsRouter)
+app.use('/api/v1/users', usersRouter)
+app.use('/api/v1/products', productsRouter)
 
 app.use((req, res) => {
   res.status(404).json({ status: 'error', code: 404, message: 'Not found' })

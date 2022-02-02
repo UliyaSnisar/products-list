@@ -1,6 +1,6 @@
 const Joi = require('joi')
 Joi.objectId = require('joi-objectid')(Joi)
-const { HttpCode } = require('../../config/constants')
+const { HttpCode } = require('../../../config/constants')
 
 const patternPassword = '^[a-zA-Z0-9]{3,30}$'
 

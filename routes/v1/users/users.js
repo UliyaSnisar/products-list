@@ -6,9 +6,9 @@ const {
     registration,
     login,
     logout
-} = require('../../controllers/users_controller')
-const guarg = require('../../helpers/guard')
-const loginLimit = require('../../helpers/rale_limit_login')
+} = require('../../../controllers/users_controller')
+const guarg = require('../../../helpers/guard')
+const loginLimit = require('../../../helpers/rale_limit_login')
 
 router.post('/registration', validateSignupUser, registration)
 

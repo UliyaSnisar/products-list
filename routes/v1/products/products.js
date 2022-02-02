@@ -7,10 +7,10 @@ const {
     removeProduct,
     saveProduct,
     updateProduct,
-    updateDualsim,} = require('../../controllers/products_controller')
+    updateDualsim,} = require('../../../controllers/products_controller')
 const { validateProduct, validateId} = require('./validation')
-const guard = require('../../helpers/guard')
-const wrapError = require('../../helpers/errorHandler')
+const guard = require('../../../helpers/guard')
+const wrapError = require('../../../helpers/errorHandler')
 
 router.get('/', guard, wrapError(getProducts))
 

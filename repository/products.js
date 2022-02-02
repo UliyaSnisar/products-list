@@ -1,5 +1,4 @@
 //репозиторий  пошел в модель
-const mongoose = require('mongoose')
 const {Product, Phone, Tablet, Notebook} = require('../model/product_model')
 
 
@@ -48,7 +47,6 @@ const listProducts = async (userId, query) => {
   const addProduct = async (body) => {
     console.log(body);
     const productType = body.producttype
-
     if(productType === 'phone'){
       return await Phone.create(body)
     }
