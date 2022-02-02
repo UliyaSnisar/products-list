@@ -10,17 +10,18 @@ const {
     updateDualsim,} = require('../../controllers/products_controller')
 const { validateProduct, validateId} = require('./validation')
 const guard = require('../../helpers/guard')
+const wrapError = require('../../helpers/errorHandler')
 
-router.get('/', guard, getProducts)
+router.get('/', guard, wrapError(getProducts))
 
-router.get('/:productId', guard, validateId, getProduct)
+router.get('/:productId', guard, validateId, wrapError(getProduct))
 
-router.delete('/:productId', guard, validateId, removeProduct)
+router.delete('/:productId', guard, validateId, wrapError(removeProduct))
 
-router.post('/', guard, validateProduct, saveProduct)
+router.post('/', guard, validateProduct, wrapError(saveProduct))
 
-router.put('/:productId', guard, [validateId, validateProduct], updateProduct)
+router.put('/:productId', guard, [validateId, validateProduct], wrapError(updateProduct))
 
-router.patch('/:productId/dualsim', guard, validateId, updateDualsim)
+router.patch('/:productId/dualsim', guard, validateId, wrapError(updateDualsim))
 
 module.exports = router;
