@@ -20,7 +20,7 @@
     "joi": "^17.4.2",
     "joi-objectid": "^4.0.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.1.9",
+    "mongoose": "^6.1.10",
     "mongoose-paginate-v2": "^1.5.0",
     "morgan": "1.10.0",
     "passport": "^0.5.2",

@@ -1,40 +1,32 @@
 //репозиторий пришел сюда в модель и взял данные
-const { Schema, model, SchemaTypes } = require('mongoose')
-const {productType} = require('../config/constants')
+const mongoose = require('mongoose')
+const {Schema, model, SchemaTypes} = mongoose
 const mongoosePaginate = require('mongoose-paginate-v2')
 
 const productSchema = new Schema({
-    type: {
-        type: String,
-        enum: {
-            values: [productType.PHONE, productType.TABLET, productType.NOTEBOOK]
-        },
-        default: productType.PHONE,
-    },
     weight: {
         type: Number,
-        required: [true, 'Set weidth of product']
+        required: true,
+        message: 'Set weidth of product',
     },
     color: {
         type: String,
-        required: [true, 'Set color of product']
+        required: true,
+        message: 'Set color of product',
     },
     price: {
         type: Number,
-        required: [true, 'Set price of product']
-    },
-    hasDualsim: {
-        type: Boolean
-    },
-    videoCard: {
-        type: String
+        required: true,
+        message: 'Set price of product',
     },
     owner:{
         type: SchemaTypes.ObjectId,
         ref: 'user',
     }
-},
-{
+  },
+  {
+      discriminatorKey: 'type'
+  }, {
     versionKey: false, 
     timestamps: true, 
     toJSON: {
@@ -43,12 +35,41 @@ const productSchema = new Schema({
         delete ret._id
         return ret
     }},
-    toObject: {virtuals: true}
-    }
-)
+    toObject: {virtuals: true},
+});
 
 productSchema.plugin(mongoosePaginate)
 
-const Product = model('product', productSchema)
+const Product = mongoose.model('Product', productSchema)
 
-module.exports = Product
+const phoneSchema= new Schema({
+    producttype: {
+        type: String
+    },
+    hasDualsim: {
+        type: Boolean,
+        required: true,
+    },
+})
+const Phone = Product.discriminator('Phone', phoneSchema)
+
+const tabletSchema= new Schema({
+    producttype: {
+        type: String
+    },
+})
+const Tablet = Product.discriminator('Tablet', tabletSchema)
+
+const notebookSchema= new Schema({
+    producttype: {
+        type: String
+    },
+    videoCard: {
+        type: String,
+        required: true,
+        message: 'Enter video card information'
+    },
+})
+const Notebook = Product.discriminator('Notebook', notebookSchema)
+
+module.exports = {Product, Phone, Tablet, Notebook}

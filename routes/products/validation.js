@@ -3,7 +3,7 @@ Joi.objectId = require('joi-objectid')(Joi)
 
 const schemaProduct = Joi.object(
     {
-        type: Joi.string(),
+        producttype: Joi.string(),
         weight: Joi.number().integer().required(),
         color: Joi.string().required(),
         price: Joi.number().required(),

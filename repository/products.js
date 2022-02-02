@@ -1,5 +1,7 @@
 //репозиторий  пошел в модель
-const Product = require('../model/product_model')
+const mongoose = require('mongoose')
+const {Product, Phone, Tablet, Notebook} = require('../model/product_model')
+
 
 const listProducts = async (userId, query) => {
   // const results = await Product.find({owner: userId}).populate({
@@ -44,8 +46,18 @@ const listProducts = async (userId, query) => {
   }
   
   const addProduct = async (body) => {
-      const result = await Product.create(body)
-      return result
+    console.log(body);
+    const productType = body.producttype
+
+    if(productType === 'phone'){
+      return await Phone.create(body)
+    }
+    if(productType === 'tablet'){
+      return await Tablet.create(body)
+    }
+    if(productType === 'notebook'){
+      return await Notebook.create(body)
+    }
   }
   
   const updateProduct = async (productId, body, userId) => {
