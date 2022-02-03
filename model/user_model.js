@@ -11,12 +11,14 @@ const userSchema = new Schema({
     },
     email: {
         type: String,
-        required: [true, 'Set email for user'],
+        required: true,
+        message: 'Set email for user',
         unique: true,
     },
     password: {
         type: String,
-        required: [true, 'Set password for user']
+        required: true,
+        message: 'Set password for user',
     },
     token: {
         type: String,

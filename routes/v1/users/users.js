@@ -5,7 +5,7 @@ const {validateSignupUser, validateLoginUser} = require('./validation')
 const {
     registration,
     login,
-    logout
+    logout,
 } = require('../../../controllers/users_controller')
 const guarg = require('../../../helpers/guard')
 const loginLimit = require('../../../helpers/rale_limit_login')
